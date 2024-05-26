@@ -3,7 +3,6 @@
 using flask to start a web application
 """
 
-
 from api.v1.views import app_views
 from flask import Flask, jsonify
 from models import storage
@@ -18,7 +17,7 @@ def close_db(error):
     storage.close()
 
 
-@app_views.errorhandler(404)
+@app.errorhandler(404)
 def not_found(error):
     """
     Handles 404 errors by returning a JSON response.
