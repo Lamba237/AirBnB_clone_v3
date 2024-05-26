@@ -32,3 +32,17 @@ def stats():
             "users": storage.count(User)
             }
     return jsonify(stats)
+
+
+@app_views.errorhandler(404)
+def not_found(error):
+    """
+    Handles 404 errors by returning a JSON response.
+
+    Args:
+        error (Exception): The error that caused the 404 response.
+
+    Returns:
+        Response: A JSON response with a 404 status code and an error message.
+    """
+    return jsonify({"error": "Not found"}), 404
