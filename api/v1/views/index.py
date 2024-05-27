@@ -32,6 +32,3 @@ def stats():
             "users": storage.count(User)
             }
     return jsonify(stats)
-
-if __name__ == "__main__":
-    app_views.run(debug=True)
