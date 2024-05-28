@@ -14,20 +14,20 @@ from models.user import User
 @app_views.route('/status', strict_slashes=False)
 def status_OK():
     """return status code: OK"""
-    return jsonify({
-        "status": "OK"
-        })
+    return jsonify({"status": "OK"})
 
 
 @app_views.route('/api/v1/stats', strict_slashes=False)
 def stats():
     """retrieves the number of each objects by type:"""
-    stats = {
-            "amenities": storage.count(Amenity),
-            "cities": storage.count(City),
-            "places": storage.count(Place),
-            "reviews": storage.count(Review),
-            "states": storage.count(State),
-            "users": storage.count(User)
+    stat = {
+            "amenities": Amenity,
+            "cities": City,
+            "places": Place,
+            "reviews": Review,
+            "states": State,
+            "users": User
             }
-    return jsonify(stats)
+    for key in stat:
+        stat[key] = storage.count(stat[key])
+    return jsonify(stat)
