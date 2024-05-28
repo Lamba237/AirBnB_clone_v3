@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-using flask to start a web application
-"""
+'''using flask to start a web application'''
 from api.v1.views import app_views
 from flask import Flask, jsonify
 from models import storage

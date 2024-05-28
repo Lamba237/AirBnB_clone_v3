@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-This method returns a json status: Ok
-"""
+'''This method returns a json status: Ok'''
 from models import storage
 from api.v1.views import app_views
 from flask import jsonify
@@ -13,7 +11,7 @@ from models.state import State
 from models.user import User
 
 
-@app_views.route('/status', methods=['GET'])
+@app_views.route('/status', strict_slashes=False)
 def status_OK():
     """return status code: OK"""
     return jsonify({
@@ -21,7 +19,7 @@ def status_OK():
         })
 
 
-@app_views.route('/api/v1/stats', methods=['GET'])
+@app_views.route('/api/v1/stats', strict_slashes=False)
 def stats():
     """retrieves the number of each objects by type:"""
     stats = {
