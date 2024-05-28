@@ -1,5 +1,10 @@
 #!/usr/bin/python3
-'''using flask to start a web application'''
+"""
+This module starts a Flask web application.
+
+It includes routes for handling all default RESTful API actions.
+"""
+
 from api.v1.views import app_views
 from flask import Flask, jsonify
 from models import storage
@@ -11,14 +16,19 @@ app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def tearDown(self):
-    """ close db storage on teardown"""
+    """
+    Close the database storage on teardown.
+
+    This function is called after each request, ensuring that the database
+    connection is closed and resources are freed up.
+    """
     storage.close()
 
 
 @app.errorhandler(404)
 def not_found(error):
     """
-    Handles 404 errors by returning a JSON response.
+    Handle 404 errors by returning a JSON response.
 
     Args:
         error (Exception): The error that caused the 404 response.
@@ -30,12 +40,9 @@ def not_found(error):
 
 
 if __name__ == "__main__":
-    if getenv("HBNB_API_HOST") is None:
-        HBNB_API_HOST = '0.0.0.0'
-    else:
-        HBNB_API_HOST = getenv("HBNB_API_HOST")
-    if getenv("HBNB_API_PORT") is None:
-        HBNB_API_PORT = 5000
-    else:
-        HBNB_API_PORT = int(getenv("HBNB_API_PORT"))
+    # Get the host and port from the environment, or use defaults
+    HBNB_API_HOST = getenv("HBNB_API_HOST", '0.0.0.0')
+    HBNB_API_PORT = int(getenv("HBNB_API_PORT", 5000))
+
+    # Start the Flask application
     app.run(host=HBNB_API_HOST, port=HBNB_API_PORT, threaded=True)
