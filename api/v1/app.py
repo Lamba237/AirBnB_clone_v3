@@ -17,7 +17,7 @@ app.register_blueprint(app_views)
 @app.teardown_appcontext
 def tearDown(self):
     """
-    Close the database storage on teardown.
+    Close the database storage on Teardown.
 
     This function is called after each request, ensuring that the database
     connection is closed and resources are freed up.
