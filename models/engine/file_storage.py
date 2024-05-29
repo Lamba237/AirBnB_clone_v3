@@ -73,7 +73,7 @@ class FileStorage:
         """Retrieve the object of type cls with the given id from storage"""
         if cls not in classes.values():
             return None
-        key = f"{cls.__name__}.{id}"
+        key = "{}.{}".format(cls.__name__, id)
         return self.__objects.get(key)
 
     def count(self, cls=None):
