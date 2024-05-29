@@ -42,7 +42,7 @@ def not_found(error):
 if __name__ == "__main__":
     # Get the host and port from the environment, or use defaults
     HBNB_API_HOST = getenv("HBNB_API_HOST", '0.0.0.0')
-    HBNB_API_PORT = int(getenv("HBNB_API_PORT", 5050))
+    HBNB_API_PORT = int(getenv("HBNB_API_PORT", 5000))
 
     # Start the Flask application
     app.run(host=HBNB_API_HOST, port=HBNB_API_PORT, threaded=True)
